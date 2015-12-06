@@ -5,13 +5,14 @@
 
 class Producer {
 public:
-	Producer (Buffer *buf, char s) : buffer_(buf), sign_(s) 
+	Producer (Buffer *buf, char s, string prefix): buffer_(buf), sign_(s), prefix_(prefix) 
 	{}
 	void produce ();
 
 private:
 	Buffer *buffer_;
 	char sign_;
+	string prefix_;
 };
 
 #endif

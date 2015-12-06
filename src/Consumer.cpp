@@ -1,5 +1,5 @@
 #include "Consumer.h"
 
 void Consumer::consume () {
-	buffer_->pop();
+	buffer_->pop(prefix_);
 }
