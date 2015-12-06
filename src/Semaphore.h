@@ -1,13 +1,13 @@
 #ifndef Semaphore_hpp
 #define Semaphore_hpp
 
-#include <boost/thread/condition.hpp>
-#include <boost/thread/mutex.hpp>
+#include <mutex>
+#include <condition_variable>
 
 class Semaphore {
 private:
-    boost::mutex mutex_;
-    boost::condition_variable condition_;
+    std::mutex mutex_;
+    std::condition_variable condition_;
     unsigned long count_;
 
 public:

@@ -32,7 +32,7 @@ int main () {
 void produceA () {
 	for (int i = 0; i < 100; ++i) {
 		producerA->produce();
-		usleep(100);
+		usleep(400);
 	}
 }
 

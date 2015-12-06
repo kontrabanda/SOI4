@@ -1,19 +1,27 @@
 #include "Buffer.h"
 
 void Buffer::push (char c, std::string prefix) {
+	empty_->wait();
+
 	mtx_.lock();
 	displayPrefix(prefix);
 	buffer_.push_front(c);
 	displayBuffer();
 	mtx_.unlock();
+
+	full_->signal();
 }
 
 void Buffer::pop (std::string prefix) {
+	full_->wait();
+
 	mtx_.lock();
 	displayPrefix(prefix);
 	buffer_.pop_front();
 	displayBuffer();
 	mtx_.unlock();
+
+	empty_->signal();
 }
 
 void Buffer::displayBuffer () {
