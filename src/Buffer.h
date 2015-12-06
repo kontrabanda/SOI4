@@ -5,6 +5,7 @@
 #include <mutex>
 #include <iostream>
 #include <string>
+#include <unistd.h>
 
 #include "Semaphore.h"
 
@@ -14,8 +15,11 @@ class Buffer {
 private:
 	std::list<char> buffer_;
 	std::mutex mtx_;
+	std::mutex producerMtx_;
 	Semaphore* empty_;
 	Semaphore* full_;
+
+	int consumerCount_;
 
 	const int BUFFER_SIZE = 7;
 
@@ -26,6 +30,8 @@ public:
 	Buffer () {
 		empty_ = new Semaphore(BUFFER_SIZE);
 		full_ = new Semaphore(0);
+
+		consumerCount_ = 0;
 	}
 
 	void push (char, string prefix);

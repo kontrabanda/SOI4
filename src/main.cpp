@@ -47,14 +47,14 @@ int main () {
 void produceA () {
 	for (int i = 0; i < 100; ++i) {
 		producerA->produce();
-		usleep(400);
+		usleep(4);
 	}
 }
 
 void produceB () {
 	for (int i = 0; i < 100; ++i) {
 		producerB->produce();
-		usleep(300);
+		usleep(3);
 	}
 }
 
