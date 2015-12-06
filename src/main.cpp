@@ -36,6 +36,11 @@ int main () {
 	prodB.join();
 	consB.join();
 
+	delete producerA;
+	delete producerB;
+	delete consumerA;
+	delete consumerB;
+
 	return 0;
 }
 
