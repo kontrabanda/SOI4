@@ -16,6 +16,7 @@ void produceB ();
 void consumeA ();
 void consumeB ();
 
+int getRandomNumber ();
 
 int main () {
 	buffer = new Buffer();
@@ -24,6 +25,8 @@ int main () {
 	producerB = new Producer(buffer, 'B', "ProducentB");
 	consumerB = new Consumer(buffer, "KonsumentB");
 	
+	srand(time(0));
+
 	std::thread prodA(produceA);
 	std::thread consA(consumeA);
 
@@ -47,27 +50,31 @@ int main () {
 void produceA () {
 	for (int i = 0; i < 100; ++i) {
 		producerA->produce();
-		usleep(4);
+		usleep(getRandomNumber());
 	}
 }
 
 void produceB () {
 	for (int i = 0; i < 100; ++i) {
 		producerB->produce();
-		usleep(3);
+		usleep(getRandomNumber());
 	}
 }
 
 void consumeA () {
 	for (int i = 0; i < 100; ++i) {
 		consumerA->consume();
-		usleep(400);
+		usleep(getRandomNumber());
 	}
 }
 
 void consumeB () {
 	for (int i = 0; i < 100; ++i) {
 		consumerB->consume();
-		usleep(300);
+		usleep(getRandomNumber());
 	}
+}
+
+int getRandomNumber () {
+	return rand() % 1000 + 1;
 }
